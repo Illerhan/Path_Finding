@@ -1,10 +1,11 @@
-#include <iostream>
+/*#include <iostream>
 
 using namespace std;
 
 int miniDist(int distance[], bool Tset[]) // finding minimum distance
 {
     int minimum=INT_MAX,ind;
+    int counter =0;
               
     for(int k=0;k<7;k++) 
     {
@@ -12,6 +13,7 @@ int miniDist(int distance[], bool Tset[]) // finding minimum distance
         {
             minimum=distance[k];
             ind=k;
+            counter++;
         }
     }
     return ind;
@@ -21,18 +23,20 @@ void DijkstraAlgo(int graph[7][7],int src) // adjacency matrix
 {
     int distance[7]; // // array to calculate the minimum distance for each node                             
     bool Tset[7];// boolean array to mark visited and unvisited for each node
-    
-     
+    int stepCount[] = {0,0,0,0,0,0,0};
+    //int counter;
     for(int k = 0; k<7; k++)
     {
+        //counter = 0;
         distance[k] = INT_MAX;
-        Tset[k] = false;    
+        Tset[k] = false;   
     }
     
     distance[src] = 0;   // Source vertex distance is set 0               
     
-    for(int k = 0; k<7; k++)                           
+    for(int v = 0; v<7; v++)                         
     {
+        int previous = 0;
         int m=miniDist(distance,Tset); 
         Tset[m]=true;
         for(int k = 0; k<7; k++)                  
@@ -41,15 +45,15 @@ void DijkstraAlgo(int graph[7][7],int src) // adjacency matrix
             if(!Tset[k] && graph[m][k] && distance[m]!=INT_MAX && distance[m]+graph[m][k]<distance[k])
             {
                 distance[k]=distance[m]+graph[m][k];
-            }
                 
+            }
         }
     }
     cout<<"Vertex\t\tDistance from source vertex"<<endl;
     for(int k = 0; k<7; k++)                      
     { 
         char str=65+k; 
-        cout<<str<<"\t\t\t"<<distance[k]<<endl;
+        cout<<str<<"\t\t\t"<<distance[k]<< "\t\t\t" << previous << "\n";
     }
 }
 
@@ -68,4 +72,4 @@ int main()
     //int** prev = nullptr;
     DijkstraAlgo(graph,6);
     return 0;                           
-}
+}*/
